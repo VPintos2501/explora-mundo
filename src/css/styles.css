@@ -16,13 +16,20 @@
 }
 
 /* Estilos generales */
-body {
-  background-color: var(--bg-color); /* Fondo dinámico */
-  color: var(--text-color); /* Texto dinámico */
-  font-size: var(--font-size-base); /* Tamaño de fuente dinámico */
-  line-height: 1.6; /* Espaciado de líneas */
-  margin: 0;
-  padding: 0;
+/* Asegura que el body ocupe toda la pantalla */
+body, html {
+  height: 100%; /* Ocupa el 100% del alto de la pantalla */
+  margin: 0; /* Elimina los márgenes por defecto */
+  padding: 0; /* Elimina el padding por defecto */
+}
+
+/* Contenedores principales */
+.container {
+  min-height: 100vh; /* Mínimo de 100% del alto de la ventana */
+  display: flex;
+  flex-direction: column; /* Flexbox para apilar elementos */
+  justify-content: space-between; /* Distribución vertical */
+  padding: var(--container-padding); /* Padding dinámico */
 }
 
 a {
@@ -40,14 +47,6 @@ button {
 
 button:hover {
   background-color: var(--button-hover-bg);
-}
-
-/* Contenedores */
-.container {
-  width: 90%;
-  max-width: 1200px; /* Ancho máximo */
-  margin: 0 auto;
-  padding: var(--container-padding);
 }
 
 /* ------------------- */
@@ -80,6 +79,7 @@ body.dark-mode {
 
   .container {
     width: 95%; /* Hacer el contenedor más ancho */
+    margin-top: 100px; /* Ajuste adicional para pantallas pequeñas */
   }
 
   button {

@@ -4,113 +4,119 @@
 /* Light Palette */
 /* ------------------- */
 :root {
-    --header-bg: #007bff;
-    --header-color: #fff;
-    --body-bg: #f8f9fa;
-    --body-color: #212529;
-    --menu-btn-bg: #fff;
-    --menu-btn-color: #007bff;
-    --menu-btn-hover-bg: #e6e6e6;
-    --slider-bg: #ccc;
-    --slider-active-bg: #007bff;
-  }
-  
-  /* Contenedor principal del header */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: var(--header-bg);
-    color: var(--header-color);
-  }
-  
-  /* Logo */
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  /* Menú */
-  .menu {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  /* Botones del menú */
-  .menu-btn {
-    padding: 0.5rem 1rem;
-    background-color: var(--menu-btn-bg);
-    color: var(--menu-btn-color);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .menu-btn:hover {
-    background-color: var(--menu-btn-hover-bg);
-  }
-  
-  /* Switch */
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-  }
-  
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--slider-bg);
-    transition: 0.4s;
-    border-radius: 20px;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-  }
-  
-  input:checked + .slider {
-    background-color: var(--slider-active-bg);
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(20px);
-  }
-  
-  /* ------------------- */
-  /* Dark Palette */
-  /* ------------------- */
-  body.dark-mode {
-    --header-bg: #333;
-    --header-color: #eee;
-    --body-bg: #121212;
-    --body-color: #f8f9fa;
-    --menu-btn-bg: #444;
-    --menu-btn-color: #eee;
-    --menu-btn-hover-bg: #555;
-    --slider-bg: #666;
-    --slider-active-bg: #888;
-  }
-  
+  --header-bg: #007bff;
+  --header-color: #fff;
+  --body-bg: #f8f9fa;
+  --body-color: #212529;
+  --menu-btn-bg: #fff;
+  --menu-btn-color: #007bff;
+  --menu-btn-hover-bg: #e6e6e6;
+  --slider-bg: #ccc;
+  --slider-active-bg: #007bff;
+}
+
+/* Contenedor principal del header */
+.header {
+  position: fixed; /* Hace el header fijo */
+  top: 0; /* Fija el header en la parte superior */
+  left: 0; /* Alinea el header al borde izquierdo */
+  width: 98%; /* Ocupa todo el ancho de la ventana */
+  z-index: 1000; /* Asegura que el header esté sobre el contenido */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--header-bg);
+  color: var(--header-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destacar el header */
+}
+
+/* Logo */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Menú */
+.menu {
+  display: flex;
+  align-items: center; /* Centra verticalmente los elementos */
+  gap: 1rem; /* Espaciado entre los botones */
+}
+
+/* Botones del menú */
+.menu-btn {
+  padding: 0.5rem 1rem;
+  background-color: var(--menu-btn-bg);
+  color: var(--menu-btn-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.menu-btn:hover {
+  background-color: var(--menu-btn-hover-bg);
+}
+
+/* Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--slider-bg);
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--slider-active-bg);
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* ------------------- */
+/* Dark Palette */
+/* ------------------- */
+body.dark-mode {
+  --header-bg: #333;
+  --header-color: #eee;
+  --body-bg: #121212;
+  --body-color: #f8f9fa;
+  --menu-btn-bg: #444;
+  --menu-btn-color: #eee;
+  --menu-btn-hover-bg: #555;
+  --slider-bg: #666;
+  --slider-active-bg: #888;
+}

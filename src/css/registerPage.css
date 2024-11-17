@@ -18,11 +18,12 @@
 .register-container {
   max-width: 400px;
   margin: 5% auto;
-  padding: 2rem;
   background-color: var(--register-bg);
   box-shadow: 0 4px 8px var(--register-shadow);
   border-radius: 8px;
   text-align: center;
+  margin-top: 70px; /* Ajusta la posición para evitar que quede oculto por el header */
+  padding: 2rem; /* Mantiene el padding existente */
 }
 
 /* Título */

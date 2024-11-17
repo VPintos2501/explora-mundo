@@ -12,13 +12,15 @@
 
 /* Contenedor principal */
 .landing-container {
-  max-width: 800px;
+  width: 95%;
+  height: 60vh;
   margin: 5% auto;
-  padding: 2rem;
   background-color: var(--landing-bg);
   box-shadow: 0 4px 8px var(--landing-shadow);
   border-radius: 8px;
   text-align: center;
+  margin-top: 70px; /* Compensa la altura del header */
+  padding: 20px; /* Mantiene el espacio interno */
 }
 
 /* Título principal */
