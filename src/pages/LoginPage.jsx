@@ -1,17 +1,19 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/loginPage.css";
-import { AuthContext } from "../context/AuthContext"; // Importar contexto de autenticación
+import bcrypt from "bcryptjs"; // Importar bcryptjs
+import { AuthContext } from "../context/AuthContext";
+import PasswordToggle from "../components/js/PasswordToggle"; // Importar el componente personalizado
 
 const LoginPage = () => {
   const [email, setEmail] = useState(""); // Estado para el correo
   const [password, setPassword] = useState(""); // Estado para la contraseña
   const [error, setError] = useState(null); // Estado para mensajes de error
-  const { login } = useContext(AuthContext); // Obtener función de login del contexto
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Previene el comportamiento por defecto del formulario
+    e.preventDefault();
 
     try {
       const response = await fetch(
@@ -19,14 +21,19 @@ const LoginPage = () => {
       );
       const users = await response.json();
 
-      // Verifica si el usuario existe con las credenciales proporcionadas
-      const user = users.find(
-        (u) => u.email === email && u.password === password
-      );
+      // Buscar usuario por correo electrónico
+      const user = users.find((u) => u.email === email);
 
       if (user) {
-        login(user); // Actualiza el estado global con los datos del usuario
-        navigate("/"); // Redirige a la landing
+        // Verificar si la contraseña coincide con el hash almacenado
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (isPasswordValid) {
+          login(user); // Actualiza el estado global con los datos del usuario
+          navigate("/"); // Redirige a la landing
+        } else {
+          setError("Credenciales incorrectas. Intenta nuevamente.");
+        }
       } else {
         setError("Credenciales incorrectas. Intenta nuevamente.");
       }
@@ -47,12 +54,10 @@ const LoginPage = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <input
-          type="password"
+        {/* Componente PasswordToggle para manejar la contraseña */}
+        <PasswordToggle
           placeholder="Contraseña"
-          value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
         />
         <button type="submit" className="btn">
           Iniciar Sesión
