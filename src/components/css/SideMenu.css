@@ -1,0 +1,83 @@
+/* ------------------- */
+/* Light Palette */
+/* ------------------- */
+:root {
+    --menu-bg: #f8f9fa;
+    --menu-text: #212529;
+    --menu-shadow: rgba(0, 0, 0, 0.2);
+    --profile-picture-border: #ccc;
+    --logout-btn-bg: #007bff;
+    --logout-btn-text: #fff;
+    --logout-btn-hover-bg: #0056b3;
+  }
+  
+  /* ------------------- */
+  /* Dark Palette */
+  /* ------------------- */
+  body.dark-mode {
+    --menu-bg: #121212;
+    --menu-text: #e4e4e4;
+    --menu-shadow: rgba(255, 255, 255, 0.1);
+    --profile-picture-border: #444;
+    --logout-btn-bg: #444;
+    --logout-btn-text: #e4e4e4;
+    --logout-btn-hover-bg: #555;
+  }
+  
+  /* Contenedor del menú desplegable */
+  .side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: var(--menu-bg);
+    color: var(--menu-text);
+    box-shadow: 2px 0 5px var(--menu-shadow);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+  }
+  
+  .close-menu {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--menu-text);
+    align-self: flex-end;
+    cursor: pointer;
+  }
+  
+  .user-info {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .profile-picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--profile-picture-border);
+    margin-bottom: 1rem;
+  }
+  
+  .user-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .logout-btn {
+    padding: 0.5rem 1rem;
+    background-color: var(--logout-btn-bg);
+    color: var(--logout-btn-text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: auto;
+  }
+  
+  .logout-btn:hover {
+    background-color: var(--logout-btn-hover-bg);
+  }
+  

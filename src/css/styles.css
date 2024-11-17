@@ -11,12 +11,18 @@
   --button-bg: #007bff; /* Fondo de botones */
   --button-hover-bg: #0056b3; /* Fondo de botones al pasar el mouse */
   --button-text: #fff; /* Texto de botones */
+  --font-size-base: 16px; /* Tamaño base de fuente */
+  --container-padding: 2%; /* Padding de los contenedores */
 }
 
 /* Estilos generales */
 body {
   background-color: var(--bg-color); /* Fondo dinámico */
   color: var(--text-color); /* Texto dinámico */
+  font-size: var(--font-size-base); /* Tamaño de fuente dinámico */
+  line-height: 1.6; /* Espaciado de líneas */
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -36,6 +42,14 @@ button:hover {
   background-color: var(--button-hover-bg);
 }
 
+/* Contenedores */
+.container {
+  width: 90%;
+  max-width: 1200px; /* Ancho máximo */
+  margin: 0 auto;
+  padding: var(--container-padding);
+}
+
 /* ------------------- */
 /* Dark Palette */
 /* ------------------- */
@@ -47,4 +61,72 @@ body.dark-mode {
   --button-bg: #333; /* Fondo de botones en modo oscuro */
   --button-hover-bg: #444; /* Hover de botones en modo oscuro */
   --button-text: #e4e4e4; /* Texto de botones en modo oscuro */
+}
+
+/* ------------------- */
+/* Responsive Design */
+/* ------------------- */
+
+/* Tablets y pantallas pequeñas */
+@media (max-width: 768px) {
+  :root {
+    --font-size-base: 14px; /* Reducir tamaño base de fuente */
+    --container-padding: 4%; /* Incrementar padding en dispositivos pequeños */
+  }
+
+  body {
+    line-height: 1.4; /* Ajustar el espaciado entre líneas */
+  }
+
+  .container {
+    width: 95%; /* Hacer el contenedor más ancho */
+  }
+
+  button {
+    font-size: 0.9rem; /* Reducir el tamaño de los botones */
+  }
+
+  a {
+    font-size: 0.9rem; /* Reducir el tamaño de los enlaces */
+  }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 480px) {
+  :root {
+    --font-size-base: 13px; /* Fuente más pequeña para teléfonos */
+    --container-padding: 5%; /* Aumentar padding */
+  }
+
+  .container {
+    width: 100%; /* Usar todo el ancho disponible */
+  }
+
+  button {
+    font-size: 0.8rem; /* Reducir aún más el tamaño de los botones */
+  }
+
+  a {
+    font-size: 0.8rem; /* Reducir el tamaño de los enlaces */
+  }
+}
+
+/* Pantallas grandes (escritorio ancho) */
+@media (min-width: 1200px) {
+  :root {
+    --font-size-base: 18px; /* Fuente más grande para pantallas grandes */
+    --container-padding: 1%; /* Reducir padding en pantallas grandes */
+  }
+
+  .container {
+    max-width: 1400px; /* Incrementar el ancho máximo */
+  }
+
+  button {
+    font-size: 1rem; /* Tamaño estándar de botones */
+  }
+
+  a {
+    font-size: 1rem; /* Tamaño estándar de enlaces */
+  }
 }
