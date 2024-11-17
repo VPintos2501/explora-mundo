@@ -1,27 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../css/myPostPage.css";
+import { AuthContext } from "../context/AuthContext";
 
 const MyPostPage = () => {
   const { id } = useParams(); // Obtiene el ID del post desde la URL
   const [post, setPost] = useState(null); // Estado para almacenar los datos del post
+  const { user } = useContext(AuthContext); // Usuario autenticado desde el contexto
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(
-          `https://67391e4ea3a36b5a62edfb6e.mockapi.io/users/1/posts/${id}`
-        );
-        const data = await response.json();
-        setPost(data);
+        if (user && user.id) {
+          const response = await fetch(
+            `https://67391e4ea3a36b5a62edfb6e.mockapi.io/users/${user.id}/posts/${id}`
+          );
+          if (response.ok) {
+            const data = await response.json();
+            setPost(data);
+          } else {
+            console.error("No se encontró el post o no tienes acceso.");
+            navigate("/dashboard"); // Redirige si no se encuentra el post
+          }
+        }
       } catch (error) {
         console.error("Error al cargar el post:", error);
+        navigate("/dashboard"); // Redirige en caso de error
       }
     };
 
     fetchPost();
-  }, [id]);
+  }, [id, user, navigate]);
 
   if (!post) {
     return <p>Cargando...</p>; // Muestra un mensaje mientras se carga el post
@@ -70,10 +80,18 @@ const MyPostPage = () => {
           ></textarea>
         </div>
         <div className="button-group">
-          <button className="btn" onClick={() => navigate(`/edit-destination/${id}`)}>
+          <button
+            className="btn"
+            type="button"
+            onClick={() => navigate(`/edit-destination/${id}`)}
+          >
             Editar
           </button>
-          <button className="btn secondary" onClick={() => navigate("/dashboard")}>
+          <button
+            className="btn secondary"
+            type="button"
+            onClick={() => navigate("/dashboard")}
+          >
             Volver
           </button>
         </div>

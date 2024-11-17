@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext"; // Importar AuthContext
 
 const AddDestination = () => {
+  const { user } = useContext(AuthContext); // Obtener el usuario autenticado
   const [title, setTitle] = useState("");
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
@@ -17,7 +19,6 @@ const AddDestination = () => {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", "exploramundo");
-      console.log([...formData]); // Verifica que el archivo y el preset estén presentes
 
       try {
         setIsUploading(true);
@@ -41,8 +42,13 @@ const AddDestination = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!user) {
+      console.error("No se encontró un usuario autenticado.");
+      return;
+    }
+
     try {
-      await fetch("https://67391e4ea3a36b5a62edfb6e.mockapi.io/users/1/posts", {
+      await fetch("https://67391e4ea3a36b5a62edfb6e.mockapi.io/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,6 +61,7 @@ const AddDestination = () => {
           visited,
           images: image, // Guarda la URL de Cloudinary
           createdAt: new Date().toISOString(),
+          userId: user.id, // Asigna el ID del usuario autenticado
         }),
       });
       navigate("/dashboard");

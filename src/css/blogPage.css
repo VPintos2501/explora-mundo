@@ -70,6 +70,14 @@
     color: #555;
   }
   
+  .post-author {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+  
+
   /* ------------------- */
   /* Dark Palette */
   /* ------------------- */
@@ -78,6 +86,6 @@
     --blog-post-bg: #1e1e1e;
     --blog-post-border: #333;
     --blog-post-shadow: rgba(255, 255, 255, 0.1);
-    --text-color: #e4e4e4;
+    --text-color: #ffffff;
   }
   
