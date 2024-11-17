@@ -8,7 +8,7 @@ const SideMenu = ({ isOpen, onClose, user, onLogout }) => {
   if (!isOpen) return null;
 
   // Imagen por defecto de tu proyecto
-  const defaultProfile = "/images/default-profile.png"; // Asegúrate de que esté en `public/images/`
+  const defaultProfile = "/public/images/default-profile.png"; // Asegúrate de que esté en `public/images/`
 
   // Manejar el cambio de modo oscuro
   const toggleDarkMode = () => {
@@ -16,18 +16,38 @@ const SideMenu = ({ isOpen, onClose, user, onLogout }) => {
     localStorage.setItem("darkMode", isDarkMode); // Guarda preferencia en localStorage
   };
 
+  // Redirigir al inicio después de cerrar sesión y desactivar modo oscuro
+  const handleLogout = () => {
+    // Limpia el modo oscuro
+    document.body.classList.remove("dark-mode");
+    localStorage.removeItem("darkMode");
+
+    // Ejecuta la función de logout
+    onLogout();
+
+    // Redirige al usuario a la página de inicio
+    navigate("/");
+  };
+
   return (
     <div className="side-menu">
       <button className="close-menu" onClick={onClose}>
         ✖
       </button>
-      <div className="user-info">
+      {/* Cabecera con información del usuario */}
+      <div className="user-header">
         <img
-          src={defaultProfile}
+          src={(user?.profile) || defaultProfile}
           alt="Perfil"
           className="profile-picture"
         />
         <p className="user-name">{user?.name}</p>
+        <button
+          className="edit-profile-btn"
+          onClick={() => navigate("/profile")}
+        >
+          Editar Perfil
+        </button>
       </div>
       <button className="menu-btn" onClick={() => navigate("/dashboard")}>
         Mi Dashboard
@@ -45,7 +65,7 @@ const SideMenu = ({ isOpen, onClose, user, onLogout }) => {
       </div>
       {/* Botón de Cerrar Sesión en el pie del menú */}
       <div className="menu-footer">
-        <button className="logout-btn" onClick={onLogout}>
+        <button className="logout-btn" onClick={handleLogout}>
           Cerrar Sesión
         </button>
       </div>

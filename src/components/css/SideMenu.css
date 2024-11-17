@@ -9,7 +9,6 @@
   --menu-btn-hover-bg: #0056b3;
   --logout-btn-bg: #dc3545;
   --logout-btn-hover-bg: #a71d2a;
-  --menu-footer-bg: #f8f9fa;
 }
 
 /* Contenedor del menú lateral */
@@ -40,9 +39,12 @@
   cursor: pointer;
 }
 
-.user-info {
+/* Cabecera del usuario */
+.user-header {
   text-align: center;
   margin-bottom: 1rem;
+  border-bottom: 1px solid var(--menu-btn-hover-bg);
+  padding-bottom: 1rem;
 }
 
 .profile-picture {
@@ -51,6 +53,7 @@
   border-radius: 50%;
   border: 2px solid var(--profile-border);
   margin-bottom: 0.5rem;
+  object-fit: cover;
 }
 
 .user-name {
@@ -58,6 +61,23 @@
   font-weight: bold;
 }
 
+.edit-profile-btn {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  background-color: var(--menu-btn-bg);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.edit-profile-btn:hover {
+  background-color: var(--menu-btn-hover-bg);
+}
+
+/* Botones del menú */
 .menu-btn {
   width: 100%;
   padding: 0.75rem;
@@ -130,7 +150,6 @@ input:checked + .slider:before {
 
 /* Pie del menú */
 .menu-footer {
-  background-color: var(--menu-footer-bg);
   padding: 1rem;
   text-align: center;
 }
@@ -162,5 +181,4 @@ body.dark-mode {
   --menu-btn-hover-bg: #555;
   --logout-btn-bg: #721c24;
   --logout-btn-hover-bg: #a71d2a;
-  --menu-footer-bg: #333;
 }

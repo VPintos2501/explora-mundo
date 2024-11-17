@@ -11,6 +11,7 @@ import EditDestination from "./pages/EditDestination";
 import MyPostPage from "./pages/MyPostPage";
 import BlogPage from "./pages/BlogPage";
 import PostPage from "./pages/PostPAge";
+import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/my-post/:id" element={<MyPostPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/post/:id" element={<PostPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </Router>
     </AuthProvider>
