@@ -1,15 +1,42 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/addDestination.css";
 
 const AddDestination = () => {
   const [title, setTitle] = useState("");
-  const [images, setImages] = useState("");
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
   const [location, setLocation] = useState("");
   const [visited, setVisited] = useState(false);
+  const [image, setImage] = useState(null); // URL de la imagen subida
+  const [isUploading, setIsUploading] = useState(false); // Estado de carga
   const navigate = useNavigate();
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "exploramundo");
+      console.log([...formData]); // Verifica que el archivo y el preset estén presentes
+
+      try {
+        setIsUploading(true);
+        const response = await fetch(
+          "https://api.cloudinary.com/v1_1/dzkdatrkt/image/upload",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+        const data = await response.json();
+        setImage(data.secure_url); // Guarda la URL de la imagen
+        setIsUploading(false);
+      } catch (error) {
+        console.error("Error al subir la imagen:", error);
+        setIsUploading(false);
+      }
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,11 +49,11 @@ const AddDestination = () => {
         },
         body: JSON.stringify({
           title,
-          images,
           rating,
           review,
           location,
           visited,
+          images: image, // Guarda la URL de Cloudinary
           createdAt: new Date().toISOString(),
         }),
       });
@@ -46,12 +73,6 @@ const AddDestination = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
-        />
-        <input
-          type="text"
-          placeholder="URL de la Imagen"
-          value={images}
-          onChange={(e) => setImages(e.target.value)}
         />
         <input
           type="number"
@@ -83,7 +104,17 @@ const AddDestination = () => {
             onChange={(e) => setVisited(e.target.checked)}
           />
         </label>
-        <button type="submit" className="btn">Guardar</button>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          required
+        />
+        {isUploading && <p>Subiendo imagen...</p>}
+        {image && <img src={image} alt="Vista previa" style={{ width: "100px", marginTop: "10px" }} />}
+        <button type="submit" className="btn" disabled={isUploading}>
+          Guardar
+        </button>
       </form>
     </div>
   );

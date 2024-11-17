@@ -1,122 +1,147 @@
+/* dashboard.css */
+
 /* ------------------- */
 /* Light Palette */
 /* ------------------- */
 :root {
-    --dashboard-bg: #f8f9fa; /* Fondo general */
-    --post-card-bg: #fff; /* Fondo de las tarjetas de destinos */
-    --post-card-border: #ddd; /* Borde de las tarjetas */
-    --post-card-shadow: rgba(0, 0, 0, 0.1); /* Sombra de las tarjetas */
-    --btn-bg: #007bff; /* Fondo de los botones */
-    --btn-hover-bg: #0056b3; /* Hover de los botones */
-    --btn-text: #fff; /* Texto de los botones */
-    --delete-btn-bg: #dc3545; /* Fondo del botón de eliminar */
-    --delete-btn-hover-bg: #a71d2a; /* Hover del botón de eliminar */
-  }
-  
-  /* Contenedor principal */
-  .dashboard-container {
-    padding: 2rem;
-    background-color: var(--dashboard-bg);
-    min-height: calc(100vh - 70px); /* Resta la altura del header fijo */
-    margin-top: 70px; /* Compensa la altura del header */
-    width: 95%;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: var(--text-color);
-  }
-  
-  .posts-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  .post-card {
-    background-color: var(--post-card-bg);
-    border: 1px solid var(--post-card-border);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px var(--post-card-shadow);
-    padding: 1rem;
-    text-align: center;
-  }
-  
-  .post-card img {
-    max-width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
-  .post-card h2 {
-    margin: 1rem 0;
-    font-size: 1.2rem;
-  }
-  
-  .post-card p {
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
-  }
-  
-  button {
-    margin-top: 0.5rem;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: var(--btn-hover-bg);
-    color: var(--btn-text);
-  }
-  
-  .delete-btn {
-    background-color: var(--delete-btn-bg);
-  }
-  
-  .delete-btn:hover {
-    background-color: var(--delete-btn-hover-bg);
-  }
-  
-  .floating-btn {
-    position: fixed;
-    bottom: 20px; /* Distancia desde la parte inferior */
-    right: 20px; /* Distancia desde la derecha */
-    width: 60px;
-    height: 60px;
-    background-color: var(--btn-bg);
-    color: var(--btn-text);
-    border: none;
-    border-radius: 50%; /* Forma circular */
-    font-size: 2rem; /* Tamaño del texto */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .floating-btn:hover {
-    background-color: var(--btn-hover-bg);
-    transform: scale(1.1); /* Efecto de ampliación */
-  }
-  
-  /* ------------------- */
-  /* Dark Palette */
-  /* ------------------- */
-  body.dark-mode {
-    --dashboard-bg: #121212;
-    --post-card-bg: #1e1e1e;
-    --post-card-border: #333;
-    --post-card-shadow: rgba(255, 255, 255, 0.1);
-    --btn-bg: #444;
-    --btn-hover-bg: #555;
-    --btn-text: #e4e4e4;
-    --delete-btn-bg: #721c24;
-    --delete-btn-hover-bg: #a71d2a;
-  }
-  
+  --dashboard-bg: #f8f9fa; /* Fondo general */
+  --post-card-bg: #fff; /* Fondo de las tarjetas de destinos */
+  --post-card-border: #ddd; /* Borde de las tarjetas */
+  --post-card-shadow: rgba(0, 0, 0, 0.1); /* Sombra de las tarjetas */
+  --btn-bg: #007bff; /* Fondo de los botones */
+  --btn-hover-bg: #0056b3; /* Hover de los botones */
+  --btn-text: #fff; /* Texto de los botones */
+  --delete-btn-bg: #dc3545; /* Fondo del botón de eliminar */
+  --delete-btn-hover-bg: #a71d2a; /* Hover del botón de eliminar */
+}
+
+/* Contenedor principal */
+.dashboard-container {
+  padding: 2rem;
+  background-color: var(--dashboard-bg);
+  min-height: calc(100vh - 100px); /* Resta la altura del header fijo */
+  margin-top: 70px; /* Compensa la altura del header */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}
+
+.posts-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.post-card {
+  background-color: var(--post-card-bg);
+  border: 1px solid var(--post-card-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--post-card-shadow);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.post-card img {
+  max-width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.post-card h2 {
+  margin: 1rem 0;
+  font-size: 1.2rem;
+}
+
+.post-card p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Muestra máximo 3 líneas */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.post-card-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-card-footer button {
+  flex: 1;
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.post-card-footer button:hover {
+  background-color: var(--btn-hover-bg);
+}
+
+.post-card-footer .delete-btn {
+  background-color: var(--delete-btn-bg);
+}
+
+.post-card-footer .delete-btn:hover {
+  background-color: var(--delete-btn-hover-bg);
+}
+
+/* Botón flotante */
+.floating-btn {
+  position: fixed;
+  bottom: 20px; /* Distancia desde la parte inferior */
+  right: 20px; /* Distancia desde la derecha */
+  width: 60px;
+  height: 60px;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  border-radius: 50%; /* Forma circular */
+  font-size: 2rem; /* Tamaño del texto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.floating-btn:hover {
+  background-color: var(--btn-hover-bg);
+  transform: scale(1.1); /* Efecto de ampliación */
+}
+
+/* ------------------- */
+/* Dark Palette */
+/* ------------------- */
+body.dark-mode {
+  --dashboard-bg: #121212;
+  --post-card-bg: #1e1e1e;
+  --post-card-border: #333;
+  --post-card-shadow: rgba(255, 255, 255, 0.1);
+  --btn-bg: #444;
+  --btn-hover-bg: #555;
+  --btn-text: #e4e4e4;
+  --delete-btn-bg: #721c24;
+  --delete-btn-hover-bg: #a71d2a;
+}

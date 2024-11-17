@@ -6,7 +6,6 @@ const Dashboard = () => {
   const [posts, setPosts] = useState([]); // Estado para almacenar los destinos
   const navigate = useNavigate();
 
-  // Cargar los destinos del usuario
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -23,7 +22,6 @@ const Dashboard = () => {
     fetchPosts();
   }, []);
 
-  // Función para eliminar un destino
   const handleDelete = async (id) => {
     try {
       await fetch(`https://67391e4ea3a36b5a62edfb6e.mockapi.io/users/1/posts/${id}`, {
@@ -44,13 +42,21 @@ const Dashboard = () => {
             <img src={post.images || "/default-image.png"} alt={post.title} />
             <h2>{post.title}</h2>
             <p>{post.location}</p>
-            <p>Calificación: {post.rating}/5</p>
-            <button onClick={() => navigate(`/edit-destination/${post.id}`)}>
-              Editar
+            <p>{post.review.substring(0, 100)}...</p>
+            <button
+              className="read-more-btn"
+              onClick={() => navigate(`/my-post/${post.id}`)}
+            >
+              Ver más
             </button>
-            <button onClick={() => handleDelete(post.id)} className="delete-btn">
-              Eliminar
-            </button>
+            <div className="post-card-footer">
+              <button onClick={() => navigate(`/edit-destination/${post.id}`)}>
+                Editar
+              </button>
+              <button onClick={() => handleDelete(post.id)} className="delete-btn">
+                Eliminar
+              </button>
+            </div>
           </div>
         ))}
       </div>
