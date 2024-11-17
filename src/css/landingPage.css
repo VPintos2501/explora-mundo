@@ -1,44 +1,47 @@
 /* landingPage.css */
 
+/* ------------------- */
+/* Light Palette */
+/* ------------------- */
+:root {
+  --landing-bg: #fff; /* Fondo claro */
+  --landing-text-color: #212529; /* Texto principal */
+  --landing-title-color: #007bff; /* Título en azul */
+  --landing-shadow: rgba(0, 0, 0, 0.1); /* Sombra clara */
+}
+
 /* Contenedor principal */
 .landing-container {
-    text-align: center; /* Centra el contenido */
-    margin-top: 10%; /* Separa del borde superior */
-  }
-  
-  /* Título principal */
-  h1 {
-    font-size: 2.5rem; /* Tamaño grande para destacar */
-    color: #007bff; /* Color azul principal */
-    margin-bottom: 1rem; /* Espaciado inferior */
-  }
-  
-  /* Descripción */
-  p {
-    font-size: 1.2rem; /* Tamaño cómodo para leer */
-    margin-bottom: 2rem; /* Espaciado inferior */
-  }
-  
-  /* Contenedor de botones */
-  .button-container {
-    display: flex; /* Coloca botones en fila */
-    justify-content: center; /* Centra horizontalmente */
-    gap: 1rem; /* Espacio entre botones */
-  }
-  
-  /* Botones */
-  .btn {
-    padding: 0.75rem 1.5rem; /* Espaciado interno */
-    background-color: #007bff; /* Azul principal */
-    color: #fff; /* Texto blanco */
-    border: none; /* Sin bordes */
-    border-radius: 5px; /* Bordes redondeados */
-    font-size: 1rem; /* Tamaño del texto */
-    cursor: pointer; /* Cursor estilo clic */
-    transition: background-color 0.3s ease; /* Transición de color */
-  }
-  
-  .btn:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
-  }
-  
+  max-width: 800px;
+  margin: 5% auto;
+  padding: 2rem;
+  background-color: var(--landing-bg);
+  box-shadow: 0 4px 8px var(--landing-shadow);
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Título principal */
+h1 {
+  font-size: 2.5rem;
+  color: var(--landing-title-color);
+  margin-bottom: 1.5rem;
+}
+
+/* Párrafos */
+p {
+  font-size: 1.2rem;
+  color: var(--landing-text-color);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+/* ------------------- */
+/* Dark Palette */
+/* ------------------- */
+body.dark-mode {
+  --landing-bg: #1e1e1e; /* Fondo oscuro */
+  --landing-text-color: #e4e4e4; /* Texto claro */
+  --landing-title-color: #65a4ff; /* Título en azul claro */
+  --landing-shadow: rgba(255, 255, 255, 0.1); /* Sombra más tenue */
+}

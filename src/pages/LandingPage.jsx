@@ -1,22 +1,19 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "../css/landingPage.css"; // Importar el CSS específico
 
 const LandingPage = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="landing-container">
-      <h1>Bienvenidos a nuestro Blog de Turismo</h1>
-      <p>Descubre y comparte experiencias de viajes por todo el mundo.</p>
-      <div className="button-container">
-        <button className="btn" onClick={() => navigate("/login")}>
-          Iniciar Sesión
-        </button>
-        <button className="btn" onClick={() => navigate("/register")}>
-          Registrarse
-        </button>
-      </div>
+      <h1>Bienvenido a ExploraMundo</h1>
+      <p>
+        ExploraMundo es tu plataforma para descubrir y compartir experiencias de
+        viaje. Sumérgete en historias inspiradoras de destinos turísticos y
+        comparte tus propias aventuras con la comunidad.
+      </p>
+      <p>
+        Explora nuevos lugares, conoce viajeros como tú, y crea recuerdos que
+        durarán toda la vida. ¡El mundo te está esperando!
+      </p>
     </div>
   );
 };

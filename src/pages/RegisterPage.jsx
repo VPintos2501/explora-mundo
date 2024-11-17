@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/registerPage.css"; // Importar el CSS específico
-import bcrypt from "bcryptjs"; // Importa bcryptjs para hashear la contraseña
+import "../css/registerPage.css";
+import bcrypt from "bcryptjs";
+import { AuthContext } from "../context/AuthContext"; // Importar contexto de autenticación
 
 const RegisterPage = () => {
   const [name, setName] = useState(""); // Estado para el nombre
   const [email, setEmail] = useState(""); // Estado para el correo
   const [password, setPassword] = useState(""); // Estado para la contraseña
   const [error, setError] = useState(null); // Estado para mensajes de error
+  const { login } = useContext(AuthContext); // Obtener función de login del contexto
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -35,8 +37,9 @@ const RegisterPage = () => {
       );
 
       if (response.ok) {
-        // Redirige al usuario a la página de inicio tras el registro exitoso
-        navigate("/inicio");
+        const newUser = await response.json(); // Obtiene los datos del nuevo usuario
+        login(newUser); // Actualiza el estado global con los datos del usuario
+        navigate("/"); // Redirige a la landing
       } else {
         setError("Hubo un problema al registrar el usuario.");
       }

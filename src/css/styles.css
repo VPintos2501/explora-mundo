@@ -1,64 +1,50 @@
 /* styles.css */
 
-/* Estilos básicos para la página */
+/* ------------------- */
+/* Light Palette */
+/* ------------------- */
+:root {
+  --bg-color: #f8f9fa; /* Fondo claro */
+  --text-color: #212529; /* Texto oscuro */
+  --link-color: #007bff; /* Enlaces azules */
+  --link-hover-color: #0056b3; /* Enlaces al pasar el mouse */
+  --button-bg: #007bff; /* Fondo de botones */
+  --button-hover-bg: #0056b3; /* Fondo de botones al pasar el mouse */
+  --button-text: #fff; /* Texto de botones */
+}
+
+/* Estilos generales */
 body {
-    margin: 0; /* Elimina el margen por defecto del navegador */
-    padding: 0; /* Elimina el padding por defecto del navegador */
-    font-family: 'Arial', sans-serif; /* Define una fuente básica para toda la aplicación */
-    background-color: #f8f9fa; /* Color de fondo neutro */
-    color: #212529; /* Color principal del texto */
-    line-height: 1.6; /* Espaciado entre líneas para mayor legibilidad */
-  }
-  
-  /* Configuración básica de encabezados */
-  h1, h2, h3, h4, h5, h6 {
-    margin: 0; /* Elimina márgenes adicionales */
-    font-weight: bold; /* Da un peso fuerte a los encabezados */
-  }
-  
-  /* Configuración básica de párrafos */
-  p {
-    margin: 0 0 1rem; /* Espaciado inferior para separación de texto */
-  }
-  
-  /* Enlaces */
-  a {
-    text-decoration: none; /* Elimina subrayado de enlaces */
-    color: #007bff; /* Color azul para enlaces */
-    transition: color 0.3s ease; /* Transición suave para cambios de color */
-  }
-  
-  a:hover {
-    color: #0056b3; /* Oscurece el color del enlace al pasar el mouse */
-  }
-  
-  /* Contenedores principales */
-  .container {
-    width: 90%; /* Ajusta el ancho del contenedor */
-    max-width: 1200px; /* Máximo ancho del contenedor */
-    margin: 0 auto; /* Centra el contenedor en la página */
-  }
-  
-  /* Botones básicos */
-  button {
-    padding: 0.5rem 1rem; /* Espaciado interno para botones */
-    border: none; /* Elimina el borde por defecto */
-    border-radius: 5px; /* Bordes redondeados */
-    background-color: #007bff; /* Color azul predeterminado */
-    color: #fff; /* Texto blanco */
-    font-size: 1rem; /* Tamaño del texto */
-    cursor: pointer; /* Cambia el cursor al estilo de clic */
-    transition: background-color 0.3s ease; /* Transición suave en el color */
-  }
-  
-  button:hover {
-    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
-  }
-  
-  /* Imágenes */
-  img {
-    max-width: 100%; /* Ajusta imágenes al contenedor */
-    height: auto; /* Mantiene la proporción */
-    display: block; /* Evita espacios extra debajo de imágenes */
-  }
-  
+  background-color: var(--bg-color); /* Fondo dinámico */
+  color: var(--text-color); /* Texto dinámico */
+}
+
+a {
+  color: var(--link-color);
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+}
+
+button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+/* ------------------- */
+/* Dark Palette */
+/* ------------------- */
+body.dark-mode {
+  --bg-color: #121212; /* Fondo oscuro */
+  --text-color: #e4e4e4; /* Texto claro */
+  --link-color: #65a4ff; /* Enlaces en modo oscuro */
+  --link-hover-color: #92c9ff; /* Hover de enlaces */
+  --button-bg: #333; /* Fondo de botones en modo oscuro */
+  --button-hover-bg: #444; /* Hover de botones en modo oscuro */
+  --button-text: #e4e4e4; /* Texto de botones en modo oscuro */
+}

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/loginPage.css"; // Importar el CSS específico
+import "../css/loginPage.css";
+import { AuthContext } from "../context/AuthContext"; // Importar contexto de autenticación
 
 const LoginPage = () => {
   const [email, setEmail] = useState(""); // Estado para el correo
   const [password, setPassword] = useState(""); // Estado para la contraseña
   const [error, setError] = useState(null); // Estado para mensajes de error
+  const { login } = useContext(AuthContext); // Obtener función de login del contexto
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -23,10 +25,10 @@ const LoginPage = () => {
       );
 
       if (user) {
-        // Redirige al usuario a la página de inicio si las credenciales son válidas
-        navigate("/inicio");
+        login(user); // Actualiza el estado global con los datos del usuario
+        navigate("/"); // Redirige a la landing
       } else {
-        setError("Credenciales incorrectas. Intenta nuevamente."); // Muestra un mensaje de error
+        setError("Credenciales incorrectas. Intenta nuevamente.");
       }
     } catch (error) {
       setError("Hubo un problema al intentar iniciar sesión.");

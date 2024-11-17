@@ -1,53 +1,80 @@
 /* registerPage.css */
 
+/* ------------------- */
+/* Light Palette */
+/* ------------------- */
+:root {
+  --register-bg: #fff; /* Fondo del contenedor */
+  --register-title-color: #007bff; /* Azul principal para el título */
+  --register-input-border: #ccc; /* Borde de inputs */
+  --register-btn-bg: #007bff; /* Fondo del botón */
+  --register-btn-hover-bg: #0056b3; /* Fondo del botón al pasar el mouse */
+  --register-btn-text-color: #fff; /* Texto blanco en el botón */
+  --register-error-color: red; /* Mensajes de error */
+  --register-shadow: rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
 /* Contenedor principal */
 .register-container {
-    max-width: 400px; /* Ancho máximo del formulario */
-    margin: 5% auto; /* Centra vertical y horizontalmente */
-    padding: 2rem; /* Espaciado interno */
-    background-color: #fff; /* Fondo blanco */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    border-radius: 8px; /* Bordes redondeados */
-    text-align: center; /* Centra el texto */
-  }
-  
-  /* Título */
-  h1 {
-    font-size: 1.8rem; /* Tamaño del texto */
-    margin-bottom: 1rem; /* Espaciado inferior */
-    color: #007bff; /* Color azul principal */
-  }
-  
-  /* Estilos para el formulario */
-  .register-form input {
-    width: 100%; /* Ocupa todo el ancho del contenedor */
-    padding: 0.75rem; /* Espaciado interno */
-    margin-bottom: 1rem; /* Espaciado inferior */
-    border: 1px solid #ccc; /* Borde gris claro */
-    border-radius: 5px; /* Bordes redondeados */
-    font-size: 1rem; /* Tamaño del texto */
-  }
-  
-  /* Botón de envío */
-  .btn {
-    width: 100%; /* Botón de ancho completo */
-    padding: 0.75rem; /* Espaciado interno */
-    background-color: #007bff; /* Azul principal */
-    color: #fff; /* Texto blanco */
-    border: none; /* Sin bordes */
-    border-radius: 5px; /* Bordes redondeados */
-    font-size: 1rem; /* Tamaño del texto */
-    cursor: pointer; /* Cambia el cursor al estilo clic */
-  }
-  
-  .btn:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
-  }
-  
-  /* Mensaje de error */
-  .error-message {
-    color: red; /* Color rojo para errores */
-    font-size: 0.9rem; /* Tamaño pequeño para destacar */
-    margin-top: 1rem; /* Espaciado superior */
-  }
-  
+  max-width: 400px;
+  margin: 5% auto;
+  padding: 2rem;
+  background-color: var(--register-bg);
+  box-shadow: 0 4px 8px var(--register-shadow);
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Título */
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--register-title-color);
+}
+
+/* Estilos para el formulario */
+.register-form input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--register-input-border);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Botón de envío */
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--register-btn-bg);
+  color: var(--register-btn-text-color);
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--register-btn-hover-bg);
+}
+
+/* Mensaje de error */
+.error-message {
+  color: var(--register-error-color);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+/* ------------------- */
+/* Dark Palette */
+/* ------------------- */
+body.dark-mode {
+  --register-bg: #1e1e1e; /* Fondo oscuro del contenedor */
+  --register-title-color: #65a4ff; /* Azul claro para el título */
+  --register-input-border: #555; /* Borde de inputs en modo oscuro */
+  --register-btn-bg: #333; /* Fondo del botón en modo oscuro */
+  --register-btn-hover-bg: #444; /* Hover del botón en modo oscuro */
+  --register-btn-text-color: #e4e4e4; /* Texto claro en el botón */
+  --register-error-color: #ff6666; /* Rojo claro para mensajes de error */
+  --register-shadow: rgba(255, 255, 255, 0.1); /* Sombra tenue */
+}
