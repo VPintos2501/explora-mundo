@@ -1,0 +1,80 @@
+/* ------------------- */
+/* Light Palette */
+/* ------------------- */
+:root {
+  --form-bg: #fff;
+  --form-border: #ddd;
+  --form-shadow: rgba(0, 0, 0, 0.1);
+  --btn-bg: #007bff;
+  --btn-hover-bg: #0056b3;
+  --btn-text: #fff;
+}
+
+/* Contenedor principal */
+.add-destination-container {
+  background-color: var(--dashboard-bg);
+  min-height: calc(100vh - 100px); /* Resta la altura del header fijo */
+  width: 98vw;
+  margin-top: 70px; /* Compensa el espacio del header */
+  display: flex;
+  align-items: center;
+  flex-direction: column; /* Flexbox para apilar elementos */
+  justify-content: space-between; /* Distribución vertical */
+  padding: var(--container-padding); /* Padding dinámico */
+}
+
+form {
+  background-color: var(--form-bg);
+  border: 1px solid var(--form-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--form-shadow);
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--form-border);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+form label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+form label input {
+  margin-left: 0.5rem;
+}
+
+form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: var(--btn-hover-bg);
+}
+
+/* ------------------- */
+/* Dark Palette */
+/* ------------------- */
+body.dark-mode {
+  --form-bg: #1e1e1e;
+  --form-border: #333;
+  --form-shadow: rgba(255, 255, 255, 0.1);
+  --btn-bg: #444;
+  --btn-hover-bg: #555;
+  --btn-text: #e4e4e4;
+}
