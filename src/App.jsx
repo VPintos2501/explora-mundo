@@ -9,6 +9,8 @@ import Dashboard from "./pages/Dashboard";
 import AddDestination from "./pages/AddDestination";
 import EditDestination from "./pages/EditDestination";
 import MyPostPage from "./pages/MyPostPage";
+import BlogPage from "./pages/BlogPage";
+import PostPage from "./pages/PostPAge";
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
           <Route path="/add-destination" element={<AddDestination />} />
           <Route path="/edit-destination/:id" element={<EditDestination />} />
           <Route path="/my-post/:id" element={<MyPostPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/post/:id" element={<PostPage />} />
         </Routes>
       </Router>
     </AuthProvider>

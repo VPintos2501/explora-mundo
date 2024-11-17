@@ -2,97 +2,165 @@
 /* Light Palette */
 /* ------------------- */
 :root {
-    --menu-bg: #f8f9fa;
-    --menu-text: #212529;
-    --menu-shadow: rgba(0, 0, 0, 0.2);
-    --profile-picture-border: #ccc;
-    --logout-btn-bg: #007bff;
-    --logout-btn-text: #fff;
-    --logout-btn-hover-bg: #0056b3;
-  }
-  
-  /* ------------------- */
-  /* Dark Palette */
-  /* ------------------- */
-  body.dark-mode {
-    --menu-bg: #121212;
-    --menu-text: #e4e4e4;
-    --menu-shadow: rgba(255, 255, 255, 0.1);
-    --profile-picture-border: #444;
-    --logout-btn-bg: #444;
-    --logout-btn-text: #e4e4e4;
-    --logout-btn-hover-bg: #555;
-  }
-  
-  /* Contenedor del menú desplegable */
-  .side-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 95%;
-    background-color: var(--menu-bg);
-    color: var(--menu-text);
-    box-shadow: 2px 0 5px var(--menu-shadow);
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    z-index: 1000;
-  }
-  
-  .close-menu {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--menu-text);
-    align-self: flex-end;
-    cursor: pointer;
-  }
-  
-  .user-info {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .profile-picture {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 2px solid var(--profile-picture-border);
-    margin-bottom: 1rem;
-  }
-  
-  .user-name {
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-  
-  .logout-btn {
-    padding: 0.5rem 1rem;
-    background-color: var(--logout-btn-bg);
-    color: var(--logout-btn-text);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: auto;
-  }
-  
-  .logout-btn:hover {
-    background-color: var(--logout-btn-hover-bg);
-  }
+  --side-menu-bg: #ffffff;
+  --side-menu-text: #212529;
+  --profile-border: #007bff;
+  --menu-btn-bg: #007bff;
+  --menu-btn-hover-bg: #0056b3;
+  --logout-btn-bg: #dc3545;
+  --logout-btn-hover-bg: #a71d2a;
+  --menu-footer-bg: #f8f9fa;
+}
 
-  .menu-btn {
-    padding: 0.5rem 1rem;
-    background-color: var(--btn-bg);
-    color: var(--btn-text);
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-bottom: 1rem;
-  }
-  
-  .menu-btn:hover {
-    background-color: var(--btn-hover-bg);
-  }  
-  
+/* Contenedor del menú lateral */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: var(--side-menu-bg);
+  color: var(--side-menu-text);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.close-menu {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.user-info {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid var(--profile-border);
+  margin-bottom: 0.5rem;
+}
+
+.user-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.menu-btn {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  background-color: var(--menu-btn-bg);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu-btn:hover {
+  background-color: var(--menu-btn-hover-bg);
+}
+
+/* Estilo para el switch */
+.dark-mode-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--menu-btn-bg);
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--menu-btn-hover-bg);
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Pie del menú */
+.menu-footer {
+  background-color: var(--menu-footer-bg);
+  padding: 1rem;
+  text-align: center;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--logout-btn-bg);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: var(--logout-btn-hover-bg);
+}
+
+/* ------------------- */
+/* Dark Palette */
+/* ------------------- */
+body.dark-mode {
+  --side-menu-bg: #1e1e1e;
+  --side-menu-text: #e4e4e4;
+  --profile-border: #65a4ff;
+  --menu-btn-bg: #444;
+  --menu-btn-hover-bg: #555;
+  --logout-btn-bg: #721c24;
+  --logout-btn-hover-bg: #a71d2a;
+  --menu-footer-bg: #333;
+}

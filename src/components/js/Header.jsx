@@ -7,13 +7,7 @@ import SideMenu from "../js/SideMenu"; // Importamos el componente SideMenu
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [darkMode, setDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para el menú desplegable
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle("dark-mode", !darkMode);
-  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen); // Alterna el estado del menú
@@ -47,19 +41,11 @@ const Header = () => {
         ) : (
           <>
             <span className="welcome-text">Bienvenido, {user.name}!</span>
+            <button className="menu-btn" onClick={() => navigate("/blog")}>
+              Blog
+            </button>
           </>
         )}
-        <button className="menu-btn" onClick={() => navigate("/")}>
-          Inicio
-        </button>
-        <label className="switch">
-          <input
-            type="checkbox"
-            checked={darkMode}
-            onChange={toggleDarkMode}
-          />
-          <span className="slider"></span>
-        </label>
       </nav>
       {/* Componente SideMenu, solo aparece si el usuario está logueado */}
       {user && (

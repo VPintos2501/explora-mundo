@@ -8,7 +8,13 @@ const SideMenu = ({ isOpen, onClose, user, onLogout }) => {
   if (!isOpen) return null;
 
   // Imagen por defecto de tu proyecto
-  const defaultProfile = "/public/images/default-profile.png"; // Asegúrate de que esté en `public/`
+  const defaultProfile = "/images/default-profile.png"; // Asegúrate de que esté en `public/images/`
+
+  // Manejar el cambio de modo oscuro
+  const toggleDarkMode = () => {
+    const isDarkMode = document.body.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", isDarkMode); // Guarda preferencia en localStorage
+  };
 
   return (
     <div className="side-menu">
@@ -26,9 +32,23 @@ const SideMenu = ({ isOpen, onClose, user, onLogout }) => {
       <button className="menu-btn" onClick={() => navigate("/dashboard")}>
         Mi Dashboard
       </button>
-      <button className="logout-btn" onClick={onLogout}>
-        Cerrar Sesión
-      </button>
+      <div className="dark-mode-switch">
+        <label className="switch">
+          <input
+            type="checkbox"
+            onChange={toggleDarkMode}
+            defaultChecked={document.body.classList.contains("dark-mode")}
+          />
+          <span className="slider"></span>
+        </label>
+        <span>Modo Oscuro</span>
+      </div>
+      {/* Botón de Cerrar Sesión en el pie del menú */}
+      <div className="menu-footer">
+        <button className="logout-btn" onClick={onLogout}>
+          Cerrar Sesión
+        </button>
+      </div>
     </div>
   );
 };
