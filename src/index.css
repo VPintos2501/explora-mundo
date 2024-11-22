@@ -603,3 +603,133 @@ header {
 .side-menu .logout-btn:hover {
   background-color: #c9302c; /* Rojo más oscuro al pasar el ratón */
 }
+
+/*-----------------------------------------------------------------------------------------------------------*/
+/*---------*/
+/* Blog Page */
+/*--------*/
+.blog-page {
+  padding: 6rem 1rem 2rem; /* Espaciado para evitar superposición con el header */
+  text-align: center;
+}
+
+.page-title {
+  font-size: 2rem;
+  color: #0056b3;
+  margin-bottom: 2rem;
+}
+
+/* Lista de posts */
+.posts-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Tarjetas individuales */
+.post-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.post-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagen del post */
+.post-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* Detalles del post */
+.post-details {
+  padding: 1rem;
+  text-align: left;
+}
+
+.post-details h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.post-details p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+.post-author {
+  font-weight: bold;
+  color: #0056b3;
+}
+
+/*-----------------------------------------------------------------------------------------------------------*/
+/*---------*/
+/* Post Page */
+/*--------*/
+.post-page .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.post-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.post-details {
+  text-align: left;
+  line-height: 1.8;
+}
+
+.post-details p {
+  margin: 0.5rem 0;
+}
+
+.post-content {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.btn-back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+  background-color: #003d80;
+}
