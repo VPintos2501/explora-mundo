@@ -1,98 +1,137 @@
-import React, { useState, useContext } from "react";
-import "../css/profilePage.css";
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const ProfilePage = () => {
-  const { user, setUser } = useContext(AuthContext); // Obtener usuario y función para actualizarlo
-  const [name, setName] = useState(user?.name || "");
-  const [profileImage, setProfileImage] = useState(user?.profile || "");
-  const [loading, setLoading] = useState(false);
+  const { user, setUser } = useContext(AuthContext);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    biography: "",
+    profile: "", // URL de la imagen
+  });
+  const [isUploading, setIsUploading] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Cargar datos del usuario al cargar la página
+    if (user) {
+      setFormData({
+        name: user.name || "",
+        email: user.email || "",
+        phone: user.phone || "",
+        biography: user.biography || "",
+        profile: user.profile || "/images/default-profile.png", // Imagen predeterminada
+      });
+    }
+  }, [user]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
-    if (!file) return;
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "exploramundo");
 
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "exploramundo"); // Reemplazar con tu upload preset
-
-    try {
-      setLoading(true);
-      const response = await fetch(
-        "https://api.cloudinary.com/v1_1/dzkdatrkt/image/upload", // Reemplazar con tu Cloud Name
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-      const data = await response.json();
-      setProfileImage(data.secure_url); // Actualiza la URL de la imagen
-    } catch (error) {
-      console.error("Error al subir la imagen:", error);
-    } finally {
-      setLoading(false);
+      try {
+        setIsUploading(true);
+        const response = await axios.post(
+          "https://api.cloudinary.com/v1_1/dzkdatrkt/image/upload",
+          formData
+        );
+        setFormData({ ...formData, profile: response.data.secure_url });
+        setIsUploading(false);
+      } catch (error) {
+        console.error("Error al subir la imagen:", error);
+        setIsUploading(false);
+      }
     }
   };
 
-  const handleSave = async () => {
-    // Aquí deberías actualizar el usuario en la base de datos/mockAPI
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await fetch(
+      const response = await axios.put(
         `https://67391e4ea3a36b5a62edfb6e.mockapi.io/users/${user.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            profile: profileImage,
-          }),
-        }
+        formData
       );
-
-      if (response.ok) {
-        const updatedUser = await response.json();
-        setUser(updatedUser); // Actualiza el contexto con los datos del usuario modificado
-        alert("Perfil actualizado exitosamente.");
-      } else {
-        alert("Error al actualizar el perfil.");
-      }
+      setUser(response.data); // Actualizar el contexto con los nuevos datos
+      alert("Perfil actualizado correctamente.");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error al actualizar el perfil:", error);
     }
   };
 
   return (
-    <div className="profile-page-container">
+    <div className="container profile-page">
       <h1>Editar Perfil</h1>
-      <div className="profile-form">
-        <label htmlFor="profile-image" className="image-label">
-          <img
-            src={profileImage || "/public/images/default-profile.png"}
-            alt="Foto de perfil"
-            className="profile-image"
+      <form className="form profile-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Nombre</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            required
           />
-          {loading ? <span>Cargando...</span> : <span>Cambiar Foto</span>}
-        </label>
-        <input
-          type="file"
-          id="profile-image"
-          accept="image/*"
-          onChange={handleImageUpload}
-          style={{ display: "none" }}
-        />
-        <input
-          type="text"
-          placeholder="Nombre"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="name-input"
-        />
-        <button onClick={handleSave} className="save-btn">
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Correo Electrónico</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phone">Teléfono</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="biography">Biografía</label>
+          <textarea
+            id="biography"
+            name="biography"
+            rows="4"
+            value={formData.biography}
+            onChange={handleInputChange}
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <label htmlFor="profile">Foto de Perfil</label>
+          <input type="file" accept="image/*" onChange={handleImageUpload} />
+          {isUploading && <p>Subiendo imagen...</p>}
+          {formData.profile && (
+            <img
+              src={formData.profile}
+              alt="Vista previa"
+              className="preview-image"
+            />
+          )}
+        </div>
+        <button type="submit" className="btn btn-primary" disabled={isUploading}>
           Guardar Cambios
         </button>
-      </div>
+      </form>
     </div>
   );
 };
