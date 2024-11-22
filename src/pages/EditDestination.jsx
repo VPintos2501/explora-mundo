@@ -53,13 +53,6 @@ const EditDestination = () => {
           required
         />
         <input
-          type="text"
-          className="input-field"
-          value={post.images}
-          onChange={(e) => setPost({ ...post, images: e.target.value })}
-          placeholder="URL de la Imagen (opcional)"
-        />
-        <input
           type="number"
           className="input-field"
           value={post.rating}
@@ -84,14 +77,6 @@ const EditDestination = () => {
           placeholder="Ubicación"
           required
         />
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={post.visited}
-            onChange={(e) => setPost({ ...post, visited: e.target.checked })}
-          />
-          Visitado
-        </label>
         <button type="submit" className="btn btn-primary">
           Guardar Cambios
         </button>
