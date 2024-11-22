@@ -10,20 +10,19 @@ const ProfilePage = () => {
     email: "",
     phone: "",
     biography: "",
-    profile: "", // URL de la imagen
+    profile: "",
   });
   const [isUploading, setIsUploading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Cargar datos del usuario al cargar la página
     if (user) {
       setFormData({
         name: user.name || "",
         email: user.email || "",
         phone: user.phone || "",
         biography: user.biography || "",
-        profile: user.profile || "/images/default-profile.png", // Imagen predeterminada
+        profile: user.profile || "/images/default-profile.png",
       });
     }
   }, [user]);
@@ -62,7 +61,7 @@ const ProfilePage = () => {
         `https://67391e4ea3a36b5a62edfb6e.mockapi.io/users/${user.id}`,
         formData
       );
-      setUser(response.data); // Actualizar el contexto con los nuevos datos
+      setUser(response.data);
       alert("Perfil actualizado correctamente.");
       navigate("/dashboard");
     } catch (error) {
@@ -71,67 +70,69 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="container profile-page">
-      <h1>Editar Perfil</h1>
-      <form className="form profile-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Nombre</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Correo Electrónico</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="phone">Teléfono</label>
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="biography">Biografía</label>
-          <textarea
-            id="biography"
-            name="biography"
-            rows="4"
-            value={formData.biography}
-            onChange={handleInputChange}
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <label htmlFor="profile">Foto de Perfil</label>
-          <input type="file" accept="image/*" onChange={handleImageUpload} />
-          {isUploading && <p>Subiendo imagen...</p>}
-          {formData.profile && (
-            <img
-              src={formData.profile}
-              alt="Vista previa"
-              className="preview-image"
+    <div className="profile-page">
+      <div className="profile-container">
+        <h1>Editar Perfil</h1>
+        <form className="profile-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Nombre</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
             />
-          )}
-        </div>
-        <button type="submit" className="btn btn-primary" disabled={isUploading}>
-          Guardar Cambios
-        </button>
-      </form>
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Correo Electrónico</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone">Teléfono</label>
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="biography">Biografía</label>
+            <textarea
+              id="biography"
+              name="biography"
+              rows="4"
+              value={formData.biography}
+              onChange={handleInputChange}
+            ></textarea>
+          </div>
+          <div className="form-group">
+            <label htmlFor="profile">Foto de Perfil</label>
+            <input type="file" accept="image/*" onChange={handleImageUpload} />
+            {isUploading && <p>Subiendo imagen...</p>}
+            {formData.profile && (
+              <img
+                src={formData.profile}
+                alt="Vista previa"
+                className="preview-image"
+              />
+            )}
+          </div>
+          <button type="submit" className="btn btn-primary" disabled={isUploading}>
+            Guardar Cambios
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -240,7 +240,7 @@ header {
 /* Dashboard */
 /*--------*/
 .dashboard {
-  padding: 6rem 1rem 2rem; /* Ajuste para evitar que se solape con el header fijo */
+  padding: 6rem 1rem 2rem;
   text-align: center;
 }
 
@@ -249,8 +249,8 @@ header {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   margin-top: 2rem;
-  justify-content: center; /* Centra los posts */
-  max-width: 1200px; /* Limita el ancho máximo del grid */
+  justify-content: center;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -262,12 +262,12 @@ header {
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-  max-width: 250px; /* Limita el ancho máximo de cada tarjeta */
-  margin: 0 auto; /* Centra la tarjeta cuando es una sola */
+  max-width: 250px;
+  margin: 0 auto;
 }
 
 .post-card:hover {
-  transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
+  transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -849,37 +849,85 @@ header {
 /* Profile Page */
 /*--------*/
 .profile-page {
-  padding: 6rem 1rem 2rem;
+  padding: 6rem 1rem 2rem; /* Evita que se solape con el header */
   text-align: center;
+}
+
+.profile-container {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.profile-container h1 {
+  font-size: 1.8rem;
+  color: #0056b3;
+  margin-bottom: 1.5rem;
 }
 
 .profile-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  max-width: 400px;
-  margin: 0 auto;
+  gap: 1.5rem;
 }
 
-.preview-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-top: 1rem;
+.profile-form .form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
-textarea {
-  resize: none;
+.profile-form label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.profile-form input,
+.profile-form textarea {
+  width: 100%;
   padding: 0.75rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: #f9f9f9;
 }
 
-textarea:focus {
+.profile-form input:focus,
+.profile-form textarea:focus {
   border-color: #0056b3;
   outline: none;
+}
+
+.profile-form .preview-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.profile-form .btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-form .btn-primary {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+.profile-form .btn-primary:hover {
+  background-color: #003d80;
 }
 
 /*-----------------------------------------------------------------------------------------------------------*/
@@ -961,4 +1009,54 @@ ul li {
 
 .contact-link:hover {
   text-decoration: underline;
+}
+
+/*-----------------------------------------------------------------------------------------------------------*/
+/*---------*/
+/* My Post Page */
+/*--------*/
+.my-post-page {
+  margin-top: 6rem; /* Ajusta para que no quede debajo del header */
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.my-post-page h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #0056b3;
+}
+
+.post-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.my-post-page p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #c9302c;
 }
