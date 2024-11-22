@@ -1,19 +1,24 @@
 import React from "react";
-import "../css/landingPage.css"; // Importar el CSS específico
 
 const LandingPage = () => {
   return (
-    <div className="landing-container">
-      <h1>Bienvenido a ExploraMundo</h1>
+    <div className="main-content">
+      <h2>Bienvenido a ExploraMundo</h2>
       <p>
-        ExploraMundo es tu plataforma para descubrir y compartir experiencias de
-        viaje. Sumérgete en historias inspiradoras de destinos turísticos y
-        comparte tus propias aventuras con la comunidad.
+        ExploraMundo es una plataforma interactiva donde puedes compartir tus
+        experiencias turísticas y descubrir destinos increíbles alrededor del
+        mundo.
       </p>
       <p>
-        Explora nuevos lugares, conoce viajeros como tú, y crea recuerdos que
-        durarán toda la vida. ¡El mundo te está esperando!
+        Regístrate o inicia sesión para empezar a crear tus propios posts y
+        explorar los de otros usuarios.
       </p>
+      <button
+        className="cta-button"
+        onClick={() => (window.location.href = "/register")}
+      >
+        Regístrate Ahora
+      </button>
     </div>
   );
 };

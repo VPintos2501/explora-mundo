@@ -1,53 +1,61 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/header.css";
 import { AuthContext } from "../../context/AuthContext";
-import SideMenu from "../js/SideMenu"; // Importamos el componente SideMenu
+import SideMenu from "../js/SideMenu";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Estado para el menú desplegable
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen); // Alterna el estado del menú
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
     <header className="header">
-      {/* Botón de menú solo visible si el usuario está logueado */}
+      {/* Botón de menú para usuarios logueados */}
       {user && (
         <button
-          className="menu-toggle"
+          className="nav-button"
           onClick={toggleMenu}
           aria-label="Abrir menú"
         >
           ☰
         </button>
       )}
+      {/* Logo redirige a la landing */}
       <div className="logo" onClick={() => navigate("/")}>
         ExploraMundo
       </div>
-      <nav className="menu">
+      <nav className="nav">
         {!user ? (
           <>
-            <button className="menu-btn" onClick={() => navigate("/login")}>
+            <button
+              className="nav-button"
+              onClick={() => navigate("/login")}
+            >
               Iniciar Sesión
             </button>
-            <button className="menu-btn" onClick={() => navigate("/register")}>
+            <button
+              className="nav-button"
+              onClick={() => navigate("/register")}
+            >
               Registrarse
             </button>
           </>
         ) : (
           <>
-            <span className="welcome-text">Bienvenido, {user.name}!</span>
-            <button className="menu-btn" onClick={() => navigate("/blog")}>
+            <button
+              className="nav-button"
+              onClick={() => navigate("/blog")}
+            >
               Blog
             </button>
           </>
         )}
       </nav>
-      {/* Componente SideMenu, solo aparece si el usuario está logueado */}
+      {/* Menú lateral desplegable */}
       {user && (
         <SideMenu
           isOpen={isMenuOpen}

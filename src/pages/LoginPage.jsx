@@ -1,14 +1,14 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/loginPage.css";
-import bcrypt from "bcryptjs"; // Importar bcryptjs
+import axios from "axios";
+import bcrypt from "bcryptjs";
 import { AuthContext } from "../context/AuthContext";
-import PasswordToggle from "../components/js/PasswordToggle"; // Importar el componente personalizado
+import PasswordToggle from "../components/js/PasswordToggle";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState(""); // Estado para el correo
-  const [password, setPassword] = useState(""); // Estado para la contraseña
-  const [error, setError] = useState(null); // Estado para mensajes de error
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -16,20 +16,17 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        `https://67391e4ea3a36b5a62edfb6e.mockapi.io/users`
+      const { data: users } = await axios.get(
+        "https://67391e4ea3a36b5a62edfb6e.mockapi.io/users"
       );
-      const users = await response.json();
 
-      // Buscar usuario por correo electrónico
       const user = users.find((u) => u.email === email);
 
       if (user) {
-        // Verificar si la contraseña coincide con el hash almacenado
         const isPasswordValid = await bcrypt.compare(password, user.password);
 
         if (isPasswordValid) {
-          login(user); // Actualiza el estado global con los datos del usuario
+          login(user);
           navigate("/"); // Redirige a la landing
         } else {
           setError("Credenciales incorrectas. Intenta nuevamente.");
@@ -39,27 +36,28 @@ const LoginPage = () => {
       }
     } catch (error) {
       setError("Hubo un problema al intentar iniciar sesión.");
-      console.error(error);
+      console.error("Error al iniciar sesión:", error);
     }
   };
 
   return (
-    <div className="login-container">
-      <h1>Inicia Sesión en ExploraMundo</h1>
+    <div className="login-page">
+      <h2>Inicia Sesión en ExploraMundo</h2>
       <form onSubmit={handleLogin} className="login-form">
         <input
           type="email"
+          className="input-field"
           placeholder="Correo electrónico"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        {/* Componente PasswordToggle para manejar la contraseña */}
         <PasswordToggle
+          className="input-field"
           placeholder="Contraseña"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit" className="btn">
+        <button type="submit" className="cta-button">
           Iniciar Sesión
         </button>
       </form>

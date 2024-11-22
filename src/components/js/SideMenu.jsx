@@ -1,31 +1,12 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/SideMenu.css";
 
 const SideMenu = ({ isOpen, onClose, user, onLogout }) => {
   const navigate = useNavigate();
-  const [profileImage, setProfileImage] = useState("/public/images/default-profile.png"); // Imagen predeterminada
+  const [profileImage, setProfileImage] = useState("/images/default-profile.png"); // Imagen predeterminada
 
-  // Manejar el cambio de modo oscuro
-  const toggleDarkMode = useCallback(() => {
-    const isDarkMode = document.body.classList.toggle("dark-mode");
-    localStorage.setItem("darkMode", isDarkMode); // Guarda preferencia en localStorage
-  }, []);
-
-  // Aplicar el modo oscuro al cargar la página si está activado en localStorage
-  useEffect(() => {
-    const storedDarkMode = localStorage.getItem("darkMode");
-    if (storedDarkMode === "true") {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
-  }, []);
-
-  // Redirigir al inicio después de cerrar sesión y desactivar modo oscuro
+  // Redirigir al inicio después de cerrar sesión
   const handleLogout = useCallback(() => {
-    document.body.classList.remove("dark-mode");
-    localStorage.removeItem("darkMode");
     onLogout();
     navigate("/");
   }, [onLogout, navigate]);
@@ -39,11 +20,7 @@ const SideMenu = ({ isOpen, onClose, user, onLogout }) => {
             `https://67391e4ea3a36b5a62edfb6e.mockapi.io/users/${user.id}`
           );
           const userData = await response.json();
-          if (userData.profile && userData.profile.includes("cloudinary")) {
-            setProfileImage(userData.profile); // Usa la imagen de Cloudinary
-          } else {
-            setProfileImage("/public/images/default-profile.png"); // Imagen predeterminada
-          }
+          setProfileImage(userData.profile || "/images/default-profile.png");
         } catch (error) {
           console.error("Error al obtener la imagen de perfil:", error);
         }
@@ -53,53 +30,48 @@ const SideMenu = ({ isOpen, onClose, user, onLogout }) => {
     fetchProfileImage();
   }, [user]);
 
-  // Renderizar null si `isOpen` es false
-  if (!isOpen) {
-    return null;
-  }
+  if (!isOpen) return null;
 
   return (
     <div className="side-menu">
-      <button className="close-menu" onClick={onClose}>
+      <button className="close-button" onClick={onClose}>
         ✖
       </button>
-      {/* Cabecera con información del usuario */}
-      <div className="user-header">
-        <img
-          src={profileImage}
-          alt="Perfil"
-          className="profile-picture"
-        />
-        <p className="user-name">{user?.name || "Usuario desconocido"}</p>
+      <div className="side-menu-header">
+        <img src={profileImage} alt="Perfil" className="profile-image" />
+        <p className="profile-name">{user?.name || "Usuario desconocido"}</p>
         <button
-          className="edit-profile-btn"
-          onClick={() => navigate("/profile")}
+          className="dropdown-item"
+          onClick={() => {
+            navigate("/profile");
+            onClose();
+          }}
         >
           Editar Perfil
         </button>
       </div>
-      {/* Navegación */}
-      <button className="menu-btn" onClick={() => navigate("/dashboard")}>
-        Mi Dashboard
-      </button>
-      <button className="menu-btn" onClick={() => navigate("/blog")}>
-        Blog
-      </button>
-      {/* Switch de Modo Oscuro */}
-      <div className="dark-mode-switch">
-        <label className="switch">
-          <input
-            type="checkbox"
-            onChange={toggleDarkMode}
-            defaultChecked={document.body.classList.contains("dark-mode")}
-          />
-          <span className="slider"></span>
-        </label>
-        <span>Modo Oscuro</span>
+      <div className="side-menu-body">
+        <button
+          className="dropdown-item"
+          onClick={() => {
+            navigate("/dashboard");
+            onClose();
+          }}
+        >
+          Mi Dashboard
+        </button>
+        <button
+          className="dropdown-item"
+          onClick={() => {
+            navigate("/blog");
+            onClose();
+          }}
+        >
+          Blog
+        </button>
       </div>
-      {/* Botón de Cerrar Sesión en el pie del menú */}
-      <div className="menu-footer">
-        <button className="logout-btn" onClick={handleLogout}>
+      <div className="side-menu-footer">
+        <button className="dropdown-item" onClick={handleLogout}>
           Cerrar Sesión
         </button>
       </div>
