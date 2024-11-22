@@ -1,16 +1,15 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext"; // Importar AuthContext
+import { AuthContext } from "../context/AuthContext";
 
 const AddDestination = () => {
-  const { user } = useContext(AuthContext); // Obtener el usuario autenticado
+  const { user } = useContext(AuthContext);
   const [title, setTitle] = useState("");
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
   const [location, setLocation] = useState("");
-  const [visited, setVisited] = useState(false);
-  const [image, setImage] = useState(null); // URL de la imagen subida
-  const [isUploading, setIsUploading] = useState(false); // Estado de carga
+  const [image, setImage] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
   const navigate = useNavigate();
 
   const handleImageUpload = async (e) => {
@@ -30,7 +29,7 @@ const AddDestination = () => {
           }
         );
         const data = await response.json();
-        setImage(data.secure_url); // Guarda la URL de la imagen
+        setImage(data.secure_url);
         setIsUploading(false);
       } catch (error) {
         console.error("Error al subir la imagen:", error);
@@ -58,10 +57,9 @@ const AddDestination = () => {
           rating,
           review,
           location,
-          visited,
-          images: image, // Guarda la URL de Cloudinary
+          images: image,
           createdAt: new Date().toISOString(),
-          userId: user.id, // Asigna el ID del usuario autenticado
+          userId: user.id,
         }),
       });
       navigate("/dashboard");
@@ -71,59 +69,63 @@ const AddDestination = () => {
   };
 
   return (
-    <div className="add-destination-container">
-      <h1>Añadir Nuevo Destino</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Título"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Calificación (1-5)"
-          value={rating}
-          onChange={(e) => setRating(e.target.value)}
-          min="1"
-          max="5"
-          required
-        />
-        <textarea
-          placeholder="Reseña"
-          value={review}
-          onChange={(e) => setReview(e.target.value)}
-          required
-        ></textarea>
-        <input
-          type="text"
-          placeholder="Ubicación"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          required
-        />
-        <label>
-          Visitado:
+    <main className="add-destination-page">
+      <div className="container">
+        <h1>Añadir Nuevo Destino</h1>
+        <form className="post-form" onSubmit={handleSubmit}>
           <input
-            type="checkbox"
-            checked={visited}
-            onChange={(e) => setVisited(e.target.checked)}
+            type="text"
+            placeholder="Título"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            className="input-field"
           />
-        </label>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-          required
-        />
-        {isUploading && <p>Subiendo imagen...</p>}
-        {image && <img src={image} alt="Vista previa" style={{ width: "100px", marginTop: "10px" }} />}
-        <button type="submit" className="btn" disabled={isUploading}>
-          Guardar
-        </button>
-      </form>
-    </div>
+          <input
+            type="number"
+            placeholder="Calificación (1-5)"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+            min="1"
+            max="5"
+            required
+            className="input-field"
+          />
+          <textarea
+            placeholder="Reseña"
+            value={review}
+            onChange={(e) => setReview(e.target.value)}
+            required
+            className="textarea-field"
+          ></textarea>
+          <input
+            type="text"
+            placeholder="Ubicación"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            required
+            className="input-field"
+          />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            className="input-field"
+          />
+          {isUploading && <p>Subiendo imagen...</p>}
+          {image && (
+            <img
+              src={image}
+              alt="Vista previa"
+              className="preview-image"
+            />
+          )}
+          <button type="submit" className="btn btn-primary" disabled={isUploading}>
+            Guardar
+          </button>
+        </form>
+      </div>
+    </main>
   );
 };
 

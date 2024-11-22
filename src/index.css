@@ -1,10 +1,12 @@
 /* Global Styles */
 body {
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
   line-height: 1.6;
   background-color: #f9f9f9;
   color: #333;
+  padding-top: 70px; /* Altura del header fijo */
 }
 
 header {
@@ -18,6 +20,7 @@ header {
   top: 0;
   width: 98%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 70px;
 }
 
 .logo {
@@ -352,7 +355,7 @@ header {
 
 /*-----------------------------------------------------------------------------------------------------------*/
 /*---------*/
-/* Editar Perfil+ */
+/* Editar Perfil */
 /*--------*/
 .edit-profile .form {
   display: flex;
@@ -435,6 +438,28 @@ header {
   outline: none;
 }
 
+.add-destination-page {
+  margin-top: 0; /* No requiere margen adicional */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem 1rem; /* Espaciado interno */
+  text-align: center;
+}
+
+.add-destination-page h1 {
+  margin-top: 0;
+  font-size: 2rem;
+  color: #0056b3;
+}
+
+.preview-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
 /*-----------------------------------------------------------------------------------------------------------*/
 /*---------*/
 /* Editar post */
@@ -467,70 +492,114 @@ header {
 .side-menu {
   position: fixed;
   top: 0;
-  right: 0;
-  height: 100vh;
+  left: 0;
   width: 250px;
-  background-color: white;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  z-index: 1000;
+  height: 100vh;
+  background-color: #fff; /* Fondo blanco para evitar conflictos */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   padding: 1rem;
-  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  overflow-y: auto; /* Habilita desplazamiento si el contenido es largo */
+  color: #333; /* Color del texto por defecto */
 }
 
-.side-menu-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.profile-image {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
-}
-
-.profile-name {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.side-menu-body {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.side-menu-footer {
-  display: flex;
-  justify-content: center;
-}
-
-.close-button {
-  align-self: flex-end;
+.side-menu .close-menu {
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
+  color: #333; /* Asegura que el botón de cerrar sea visible */
 }
 
-.dropdown-item {
-  width: 100%;
-  text-align: left;
-  background: none;
+.side-menu .user-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.side-menu .profile-picture {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.side-menu .user-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333; /* Asegura que el nombre del usuario sea visible */
+  text-align: center;
+}
+
+.side-menu .edit-profile-btn {
+  background-color: #0056b3; /* Azul */
+  color: white; /* Texto blanco */
+  padding: 0.5rem 1rem;
   border: none;
-  padding: 0.75rem;
-  font-size: 1rem;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 1rem;
   transition: background-color 0.3s ease;
 }
 
-.dropdown-item:hover {
-  background-color: #f0f0f0;
+.side-menu .edit-profile-btn:hover {
+  background-color: #003d80; /* Azul más oscuro */
+}
+
+.side-menu .menu-btn {
+  background-color: #0056b3; /* Fondo azul */
+  color: white; /* Texto blanco para contraste */
+  font-size: 1rem;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+.side-menu .menu-btn:hover {
+  background-color: #003d80; /* Fondo azul oscuro al pasar el ratón */
+  color: white; /* Asegura el contraste en hover */
+}
+
+.side-menu .dark-mode-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid #ddd;
+}
+
+.side-menu .dark-mode-switch span {
+  font-size: 0.9rem;
+  color: #333; /* Asegura que el texto sea visible */
+}
+
+.side-menu .menu-footer {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+}
+
+.side-menu .logout-btn {
+  background-color: #d9534f; /* Rojo (para indicar acción crítica) */
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.side-menu .logout-btn:hover {
+  background-color: #c9302c; /* Rojo más oscuro al pasar el ratón */
 }
