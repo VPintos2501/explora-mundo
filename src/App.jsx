@@ -10,7 +10,7 @@ import AddDestination from "./pages/AddDestination";
 import EditDestination from "./pages/EditDestination";
 import MyPostPage from "./pages/MyPostPage";
 import BlogPage from "./pages/BlogPage";
-import PostPage from "./pages/PostPAge";
+import PostPage from "./pages/PostPage";
 import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
