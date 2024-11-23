@@ -16,7 +16,7 @@
 }
 
 /* Contenedor principal del header */
-.header {
+.header1 {
   position: fixed; /* Hace el header fijo */
   top: 0; /* Fija el header en la parte superior */
   left: 0; /* Alinea el header al borde izquierdo */
@@ -29,7 +29,7 @@
   background-color: var(--header-bg);
   color: var(--header-color);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destacar el header */
-}
+} 
 
 /* Logo */
 .logo {

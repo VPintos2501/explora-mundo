@@ -43,7 +43,8 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <h2>Inicia Sesión en ExploraMundo</h2>
-      <form onSubmit={handleLogin} className="login-form">
+      <form onSubmit={handleLogin} className="login-form"> {/* Contenedor */}
+       {/* INICIO Correo */}
         <input
           type="email"
           className="input-field"
@@ -52,7 +53,10 @@ const LoginPage = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <PasswordToggle
+        {/* FIN Correo */}
+
+        {/* Input de Contraseña */}
+        <PasswordToggle  /* Esto también es un imput duh */
           className="input-field"
           placeholder="Contraseña"
           onChange={(e) => setPassword(e.target.value)}

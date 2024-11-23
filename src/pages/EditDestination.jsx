@@ -46,7 +46,7 @@ const EditDestination = () => {
       <form onSubmit={handleSubmit} className="post-form">
         <input
           type="text"
-          className="input-field"
+          className="input-Editar"
           value={post.title}
           onChange={(e) => setPost({ ...post, title: e.target.value })}
           placeholder="Título"
@@ -54,7 +54,7 @@ const EditDestination = () => {
         />
         <input
           type="number"
-          className="input-field"
+          className="input-Editar"
           value={post.rating}
           onChange={(e) => setPost({ ...post, rating: e.target.value })}
           placeholder="Calificación (1-5)"
@@ -71,7 +71,7 @@ const EditDestination = () => {
         ></textarea>
         <input
           type="text"
-          className="input-field"
+          className="input-Editar"
           value={post.location}
           onChange={(e) => setPost({ ...post, location: e.target.value })}
           placeholder="Ubicación"

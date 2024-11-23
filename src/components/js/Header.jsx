@@ -13,7 +13,7 @@ const Header = () => {
   };
 
   return (
-    <header className="header">
+    <header className="header1">
       {/* Botón de menú para usuarios logueados */}
       {user && (
         <button

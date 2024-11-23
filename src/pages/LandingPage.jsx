@@ -15,7 +15,13 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="landing-page">
+    <div className="landing-page"style={{
+      backgroundImage: "url('/images/fondo3.jpg')", // Ruta absoluta por las dudas
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+    }}
+    >
       {/* Sección de Bienvenida */}
       <section className="section welcome-section">
         <h1>Bienvenido a ExploraMundo</h1>

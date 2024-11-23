@@ -46,30 +46,38 @@ const MyPostPage = () => {
 
   return (
     <div className="container my-post-page">
-      <h1>{post.title}</h1>
-      <img src={post.images || "/default-image.png"} alt={post.title} className="post-image" />
-      <p>
-        <strong>Ubicación:</strong> {post.location}
-      </p>
-      <p>
-        <strong>Calificación:</strong> {post.rating}/5
-      </p>
-      <p>
-        <strong>Reseña:</strong> {post.review}
-      </p>
-      <div className="actions">
-        <button
-          className="btn btn-primary"
-          onClick={() => navigate(`/edit-destination/${post.id}`)}
-        >
-          Editar
-        </button>
-        <button className="btn btn-danger" onClick={handleDelete}>
-          Eliminar
-        </button>
+      <div className="post-cardPost">
+        <h1 className="TituloPost">{post.title}</h1>
+        <div className="imgUsuario">
+        <img
+          src={post.images || "/default-image.png"}
+          alt={post.title}
+          className="post-image" /* Aquí va la imagen */
+        />
+        </div>
+        <p>
+          <strong>Ubicación:</strong> {post.location}
+        </p>
+        <p>
+          <strong>Calificación:</strong> {post.rating}/5
+        </p>
+        <p>
+          <strong>Reseña:</strong> {post.review}
+        </p>
+        <div className="actions">
+          <button
+            className="btn btn-primary"
+            onClick={() => navigate(`/edit-destination/${post.id}`)}
+          >
+            Editar
+          </button>
+          <button className="btn btn-danger" onClick={handleDelete}>
+            Eliminar
+          </button>
+        </div>
       </div>
     </div>
-  );
+  );  
 };
 
 export default MyPostPage;
